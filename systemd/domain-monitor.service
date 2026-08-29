@@ -1,0 +1,19 @@
+[Unit]
+Description=Dave's Domain Monitor & Telegram Bot Daemon
+After=network.target network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/daves-domain-monitor
+ExecStart=/usr/bin/python3 -m domain_monitor telegram-bot
+Restart=always
+RestartSec=5
+KillMode=process
+Environment=PYTHONUNBUFFERED=1
+EnvironmentFile=-%h/daves-domain-monitor/.env
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

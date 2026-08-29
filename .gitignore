@@ -1,0 +1,39 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.env
+
+# SQLite database & exports
+data/
+*.db
+*.sqlite3
+domains_export.json
+domains_export.csv
+
+# IDE & OS files
+.idea/
+.vscode/
+*.swp
+.DS_Store

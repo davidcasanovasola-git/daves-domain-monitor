@@ -1,0 +1,128 @@
+# ==============================================================================
+# Dave's Domain Monitor - Configuration File
+# ==============================================================================
+
+# Personal details used to automatically generate domain permutations
+name:
+  first_name: "carlos"
+  last_name1: "diaz"
+  last_name2: "garcia"
+  
+  # Target TLD extensions to monitor
+  tlds:
+    - "es"     # Spain (.es)
+    - "com"    # Global standard (.com)
+    - "net"    # Networking / Classic (.net)
+    - "dev"    # Developer (Google Registry)
+    - "me"     # Personal branding (.me)
+    - "io"     # Tech standard (.io)
+    - "ai"     # Artificial Intelligence (.ai)
+    - "bio"    # Link in bio (.bio)
+    - "co"     # Premium alternative to .com (.co)
+    - "sh"     # Terminal / Linux / Tech aesthetic (.sh)
+
+  # Excluded TLD extensions
+  excluded_tlds:
+    - "cat"
+    - "org"
+    - "photography"
+    - "info"
+    - "biz"
+    - "app"
+    - "tech"
+    - "pro"
+    - "bot"
+    - "page"
+
+  # Excluded slug combinations
+  excluded_slugs:
+    - "diaz"
+    - "cdiaz"
+    - "carlos-diaz"
+    - "carlosgarcia"
+    - "carlos-garcia"
+    - "garcia"
+    - "diazgarcia"
+    - "carlosdiazgarcia"
+    - "carlos-diaz-garcia"
+    - "diaz-garcia"
+
+  # Specific excluded domain names (e.g. reserved or undesirable)
+  excluded_domains:
+    - "carlos.app"
+    - "carlos.dev"
+    - "carlos.page"
+    - "carlos.tech"
+    - "carlos.pro"
+    - "carlos.bot"
+    - "diaz.app"
+    - "diaz.page"
+    - "diaz.tech"
+    - "diaz.com"
+    - "diaz.es"
+    - "carlosdiaz.io"
+    - "carlosdiaz.ai"
+    - "carlosdiaz.co"
+    - "carlosdiaz.sh"
+    - "carlosdiaz.bio"
+    - "carlosdiaz.bot"
+    - "carlosdiaz.pro"
+    - "carlosdiaz.page"
+
+  # Combination generation toggles
+  include_full_name: false          # Do not generate long 3-part names
+  include_single_names: true        # Include single names ('carlos')
+  include_first_name_only: true     # Include first name only ('carlos')
+  include_surname_only: false       # Do NOT include surname only ('diaz')
+  include_first_and_last: true      # Include first + last name ('carlosdiaz')
+  include_second_surname: false     # Do NOT include second surname ('garcia')
+  include_hyphenated: false         # ❌ Do NOT include hyphens ('carlos-diaz' excluded)
+  include_initials: false           # ❌ Do NOT include initials ('cdiaz' excluded)
+
+# Custom high-priority domains to monitor
+custom_domains:
+  - "carlos.es"
+  - "carlos.com"
+  - "carlos.net"
+  - "carlos.me"
+  - "carlos.io"
+  - "carlos.ai"
+  - "carlos.bio"
+  - "carlos.co"
+  - "carlos.sh"
+  - "carlosdiaz.es"
+  - "carlosdiaz.com"
+  - "carlosdiaz.net"
+  - "carlosdiaz.dev"
+  - "carlosdiaz.me"
+
+# Cloudflare Registrar & DNS Configuration
+cloudflare:
+  api_token: "${CLOUDFLARE_API_TOKEN}"
+  account_id: "${CLOUDFLARE_ACCOUNT_ID}"
+  doh_url: "https://cloudflare-dns.com/dns-query"
+
+# DonDominio API Configuration (Optional - for Spanish .es verification)
+dondominio:
+  api_user: "${DONDOMINIO_API_USER}"
+  api_key: "${DONDOMINIO_API_KEY}"
+
+# Telegram Bot Notifications
+telegram:
+  enabled: true
+  bot_token: "${TELEGRAM_BOT_TOKEN}"
+  chat_id: "${TELEGRAM_CHAT_ID}"
+  send_daily_summary: true
+
+# Discord Webhook Notifications
+discord:
+  enabled: false
+  webhook_url: "${DISCORD_WEBHOOK_URL}"
+
+# Monitor Engine Parameters
+monitor:
+  interval_hours: 0.5             # Background scan frequency (every 30 minutes)
+  timeout_seconds: 8              # Timeout per DNS/HTTP request
+  max_concurrency: 8              # Concurrent worker threads
+  expiring_threshold_days: 30     # Alert if domain expires in less than X days
+  database_path: "data/domains.db" # Path to SQLite database
